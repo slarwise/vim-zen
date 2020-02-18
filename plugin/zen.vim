@@ -5,7 +5,7 @@ let g:loaded_zen = 1
 
 let g:zen_activated = 0
 
-call zen#get_colors()
+" call zen#get_colors()
 
 augroup ZenVimLeave
     autocmd!
