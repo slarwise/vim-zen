@@ -12,7 +12,6 @@ function! zen#activate() "{{{
     if exists("$TMUX")
         silent !tmux set status off
     endif
-    echo s:signcolumn_bg
     let g:zen_activated = 1
 endfunction "}}}
 
