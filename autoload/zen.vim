@@ -24,16 +24,16 @@ function! zen#deactivate() "{{{
     let g:zen_activated = 0
 endfunction "}}}
 
-function! zen#get_colors()
+function! zen#get_colors() "{{{
     let s:signcolumn_bg = s:get_hl_attr('SignColumn', 'bg')
     let s:normal_bg = s:get_hl_attr('Normal', 'bg')
-endfunction
+endfunction "}}}
 
 function! s:get_hl_attr(group, attribute) "{{{
     return synIDattr(synIDtrans(hlID(a:group)), a:attribute)
 endfunction "}}}
 
-function! zen#reset()
+function! zen#reset() "{{{
     let l:zen_activated = g:zen_activated
     if l:zen_activated
         call zen#deactivate()
@@ -42,7 +42,6 @@ function! zen#reset()
     if l:zen_activated
         call zen#activate()
     endif
-endfunction
-
+endfunction "}}}
 
 " vim:set foldmethod=marker:
