@@ -9,7 +9,12 @@ call zen#get_colors()
 
 augroup ZenVimLeave
     autocmd!
-    autocmd VimLeave * call zen#deactivate()
+    autocmd VimLeave * if g:zen_activated | call zen#deactivate() | endif
+augroup END
+
+augroup ZenColorsChanged
+    autocmd!
+    autocmd ColorScheme * call zen#reset()
 augroup END
 
 command! Zen call zen#toggle()

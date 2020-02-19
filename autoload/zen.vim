@@ -33,4 +33,16 @@ function! s:get_hl_attr(group, attribute) "{{{
     return synIDattr(synIDtrans(hlID(a:group)), a:attribute)
 endfunction "}}}
 
+function! zen#reset()
+    let l:zen_activated = g:zen_activated
+    if l:zen_activated
+        call zen#deactivate()
+    endif
+    call zen#get_colors()
+    if l:zen_activated
+        call zen#activate()
+    endif
+endfunction
+
+
 " vim:set foldmethod=marker:
