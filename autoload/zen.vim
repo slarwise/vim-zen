@@ -7,6 +7,10 @@ function! zen#toggle() "{{{
 endfunction "}}}
 
 function! zen#activate() "{{{
+    if !exists("s:setup_done")
+        call zen#get_colors()
+        let s:setup_done = 1
+    endif
     set nonumber norelativenumber laststatus=0 noruler signcolumn=yes:5
     execute "highlight SignColumn guibg=" . s:normal_bg
     if exists("$TMUX")
