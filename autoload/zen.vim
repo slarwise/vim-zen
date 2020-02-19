@@ -8,8 +8,7 @@ endfunction "}}}
 
 function! zen#activate() "{{{
     if !exists("s:setup_done")
-        call zen#get_colors()
-        let s:setup_done = 1
+        call s:setup()
     endif
     set nonumber norelativenumber laststatus=0 noruler signcolumn=yes:5
     execute "highlight SignColumn guibg=" . s:normal_bg
@@ -28,7 +27,23 @@ function! zen#deactivate() "{{{
     let g:zen_activated = 0
 endfunction "}}}
 
-function! zen#get_colors() "{{{
+function! s:setup() "{{{
+    call s:get_colors()
+
+    augroup ZenVimLeave
+        autocmd!
+        autocmd VimLeave * if g:zen_activated | call zen#deactivate() | endif
+    augroup END
+
+    augroup ZenColorsChanged
+        autocmd!
+        autocmd ColorScheme * call zen#reset()
+    augroup END
+
+    let s:setup_done = 1
+endfunction "}}}
+
+function! s:get_colors() "{{{
     let s:signcolumn_bg = s:get_hl_attr('SignColumn', 'bg')
     let s:normal_bg = s:get_hl_attr('Normal', 'bg')
 endfunction "}}}
@@ -42,7 +57,7 @@ function! zen#reset() "{{{
     if l:zen_activated
         call zen#deactivate()
     endif
-    call zen#get_colors()
+    call s:get_colors()
     if l:zen_activated
         call zen#activate()
     endif
