@@ -10,8 +10,8 @@ function! zen#activate() "{{{
     if !exists("s:setup_done")
         call s:setup()
     endif
-    set nonumber norelativenumber laststatus=0 noruler signcolumn=yes:5
-    execute "highlight SignColumn guibg=" . s:normal_bg
+    windo set nonumber norelativenumber laststatus=0 noruler signcolumn=yes:5
+    windo execute "highlight SignColumn guibg=" . s:normal_bg
     if exists("$TMUX")
         silent !tmux set status off
     endif
@@ -19,8 +19,8 @@ function! zen#activate() "{{{
 endfunction "}}}
 
 function! zen#deactivate() "{{{
-    set number relativenumber laststatus=2 ruler signcolumn&
-    execute "highlight SignColumn guibg=" . s:signcolumn_bg
+    windo set number relativenumber laststatus=2 ruler signcolumn&
+    windo execute "highlight SignColumn guibg=" . s:signcolumn_bg
     if exists("$TMUX")
         silent !tmux set status on
     endif
