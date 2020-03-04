@@ -2,7 +2,7 @@
 
 Removes distractions and lets you focus on the text, similarly to
 [goyo.vim](https://github.com/junegunn/goyo.vim). With vim-zen you get the full
-text height which you can't currently in goyo.
+text height which you currently don't in goyo.
 
 The current implementation removes line numbers (and relative line numbers),
 ruler and only shows the statusline when two or more windows are open, i.e. sets
